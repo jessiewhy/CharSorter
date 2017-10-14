@@ -13,6 +13,8 @@ public class Main {
             else if(Character.isLetter(c)){
                 System.out.println(c + " is a letter.");
             }
+            else if (Character.isWhitespace(c))
+                System.out.println(c + " is a whitespace.");
             else{
                 System.out.println(c + " is a symbol.");
             }
