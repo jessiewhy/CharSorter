@@ -4,39 +4,49 @@ import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
+        int userA = 0;
         Scanner s = new Scanner(System.in);
         String str = s.nextLine();
         char[] array = str.toCharArray();
-        for(char c: array) {
-            if (charType(c) == 'i') {
-            System.out.println("Character type is a number.");
-        }
-           else if(charType(c) == 'l'){
-                System.out.println("Character type is a letter.");
+        Arrays.sort(array);
+        while (userA < 4) {
+            System.out.println("Please select an option you would like to see.\n");
+            System.out.println("1. Display character frequencies alphabetically");
+            System.out.println("2. Display sorted frequencies");
+            System.out.println("3. Show types of character frequencies");
+            System.out.println("4. Exit");
+            userA = s.nextInt();
+            if (userA == 1) {
+            // option 1
             }
-            else if (charType(c) == 'w') {
-                System.out.println("Character type is a whitespace.");
+            else if (userA == 2) {
+                //option 2
+            }
+            else if (userA == 3) {
+                for (char c : array) {
+                    System.out.println(charType(c));//option 3
+                }
             }
             else {
-                System.out.println("Character type is a symbol.");
+                return; //exit program
             }
         }
     }
-    public static char charType(char cPrime) {
-        char myType;
+    public static String charType(char cPrime) {
+        String myResult;
         if (Character.isDigit(cPrime)) {
-            myType = 'i';
+            myResult = cPrime + " is a number.";
             //System.out.println(cPrime + " is a number.");
         } else if (Character.isLetter(cPrime)) {
-            myType = 'l';
+            myResult = cPrime + " is a letter.";
             //System.out.println(cPrime + " is a letter.");
         } else if (Character.isWhitespace(cPrime)) {
-            myType = 'w';
+            myResult = cPrime + " is a whitespace.";
             //System.out.println(cPrime + " is a whitespace.");
         } else {
-            myType = 's';
+            myResult = cPrime + " is a symbol.";
             //System.out.println(cPrime + " is a symbol.");
         }
-        return myType;
+        return myResult;
     }
 }
