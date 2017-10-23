@@ -1,9 +1,7 @@
 package com.company;
-import java.lang.reflect.Array;
 import java.util.*;
 
 public class Main {
-    //final int ASCII_SIZE = 256;
     public static void main(String[] args) {
         int userA = 0;
         Scanner s = new Scanner(System.in);
@@ -12,7 +10,7 @@ public class Main {
         char[] array = str.toCharArray();
         int[] frq_array = new int[256];
 
-        //Arrays.sort(array);
+
         while (userA < 4) {
             System.out.println("Please select an option you would like to see.\n");
             System.out.println("1. Display character frequencies alphabetically");
@@ -21,14 +19,12 @@ public class Main {
             System.out.println("4. Exit");
             userA = s.nextInt();
             if (userA == 1) {
-                // System.out.println(strSort(array));
-                // char[] srtArray = strSort(array);
-                frq_array = alphabeticalSort(str);
-                for ( int i = 0; i < frq_array.length; i++ )
+                frq_array = alphabeticalSort(str);   // alphabetized string
+                for ( int i = 0; i < frq_array.length; i++ )   // checks freq of each string char, int, WS, and symbol
                 {
                     if ( frq_array [i] > 0 )
                     {
-                        System.out.println( (char)i + " freq: " + frq_array[i] );
+                        System.out.println( (char)i + " freq: " + frq_array[i] );   // prints freq of each string elmnt
                     }
                 }
 
@@ -41,7 +37,8 @@ public class Main {
 
                 frqsrt_array = dimSort(frq_array);
                 int maxf = maxFreq(frq_array);
-                for (int j=maxf; j >=0;j--){
+                for (int j=maxf; j >=0;j--)   //listing string elmnts by number of occurences in descending order
+                {
                     for(int i=0; i< frq_array.length; i++ ) {
                         if (frqsrt_array[i][j] != 0 )
                             System.out.println((char)i+" freq: "+j);
@@ -50,41 +47,42 @@ public class Main {
 
 
             }
-            else if (userA == 3) {
-                int txtCnt=0, numCnt=0,wspCnt=0,symbCnt=0;
+            else if (userA == 3)   // listing num of each category in string
+            {
+                int txtCnt=0, numCnt=0, wspCnt=0, symbCnt=0;
 
                 for (char c : array) {
                     if (Character.isDigit(c)) {
-                        numCnt++;
+                        ++numCnt;
                         //System.out.println(cPrime + " is a number.");
                     } else if (Character.isLetter(c)) {
-                        txtCnt++;
+                        ++txtCnt;
                         //System.out.println(cPrime + " is a letter.");
                     } else if (Character.isWhitespace(c)) {
-                        wspCnt++;
+                        ++wspCnt;
                         //System.out.println(cPrime + " is a whitespace.");
                     } else {
-                        symbCnt++;
+                        ++symbCnt;
                         //System.out.println(cPrime + " is a symbol.");
                     }
                 }
-                System.out.println("Textual Character count: " + txtCnt);//option 3
+                System.out.println("Textual Character count: " + txtCnt);
                 System.out.println("Numerical Character count: " + numCnt);
                 System.out.println("WhiteSpace  Character count: " + wspCnt);
                 System.out.println("Symbol  Character count: " + symbCnt);
             }
             else if (userA == 4) {
                 System.out.println("Character Sorter Exited Successfully");
-                return; //exit program
+                return;   //exit program
             }
             else {
                 System.out.println("Error, bad input, please enter a number 1-4");
-                userA = 0;
+                userA = 0;   //reset loop
             }
 
         }
     }
-    public static char[] strSort(char[] s_array){
+    /*public static char[] strSort(char[] s_array){
         char temp;
         for(int i = 0; i < s_array.length; i++){
             for(int j = 0; j < s_array.length; j++){
@@ -96,10 +94,10 @@ public class Main {
             }
         }
         return s_array;
-    }
+    }*/
 
-    public static int maxFreq(int[] i_array){
-
+    public static int maxFreq(int[] i_array)   //sorting string elmnts by number of occurrences in string (descending order)
+    {
         int maxF=0;
         for(int i = 0; i < i_array.length; i++){
             if (i_array[i] > maxF)
@@ -109,7 +107,7 @@ public class Main {
         return  maxF;
     }
 
-    public static int minFreq(int[] i_array){
+    /*public static int minFreq(int[] i_array){
 
         int minF=0;
         for(int i = 0; i < i_array.length; i++){
@@ -118,10 +116,10 @@ public class Main {
 
         }
         return  minF;
-    }
+    }*/
 
-    public static int[][] dimSort(int[] i_array){
-
+    public static int[][] dimSort(int[] i_array)   // searching for string elmnt w most occurences
+    {
         int maxFreq = 32256;
         int[][] dimfeq = new int[256][maxFreq];
         for(int i = 0; i < i_array.length; i++){
@@ -133,24 +131,16 @@ public class Main {
     }
 
 
-    public static int[] alphabeticalSort(String inputStr)
+    public static int[] alphabeticalSort(String inputStr)   //sorts user input string alphabetically
     {
-        char[] srtA;
         int[] arrayM = new int[256];
 
         for ( int i = 0; i < inputStr.length(); i++ )
         {
             char character = inputStr.charAt( i );
-            int ascii = ( int )character;
-            //  System.out.println( character + " = " + Integer.toBinaryString( ascii ) );
-            arrayM[ascii]++;
+            int ascii = ( int )character;   // converts char to ascii
+            arrayM[ascii]++;   // marks array block at char's ascii equiv. representation
         }
-
-
-
         return arrayM;
     }
-
-
-
 }
